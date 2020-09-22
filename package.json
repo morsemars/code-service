@@ -1,0 +1,16 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "Code microservice",
+  "main": "server.js",
+  "dependencies": {
+    "express": "4.17.1",
+    "vm2": "3.9.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Marcelino Madriaga",
+  "license": "ISC"
+}
