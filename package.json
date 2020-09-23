@@ -9,6 +9,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node server.js",
     "docker-run": "docker run -d -p 3000:8080 code-service",
     "docker-build": "docker build --tag code-service ."
   },
