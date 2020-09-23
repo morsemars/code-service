@@ -1,16 +1,31 @@
-const { VM } = require('vm2');
+const { VMScript, NodeVM } = require('vm2');
 
-function execute(code){
+function execute(code) {
 
-    let result = {}
+    const result = {
+        logs: []
+    }
 
-    try{
-        result["message"] = new VM().run(code)
+    const vm = new NodeVM({
+        console: 'redirect',
+        sandbox: { result }
+    });
+
+    vm.on('console.log', (value) => {
+        result["logs"].push(value)
+    });
+
+    try {
+        const script = new VMScript(`
+            result["returnValue"] = (function(){${code}})()
+        `)
+
+        vm.run(script)
         result["success"] = true
-    }catch(err){
-        result["message"] = err.toString()
+    } catch (err) {
+        result["returnValue"] = err.toString()
         result["success"] = false
-    }finally{
+    } finally {
         return result
     }
 }
